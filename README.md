@@ -12,7 +12,7 @@ A simple authentication app built with **Next.js 14 App Router**, **Auth.js**, *
 
 ## 🔗 Live Demo
 
-👉 [supreme-potato.vercel.app](https://supreme-potato.vercel.app)  
+👉 [supreme-potato.vercel.app](https://iamsupremepotato.vercel.app)  
 _Deployed via Vercel_
 
 ---
