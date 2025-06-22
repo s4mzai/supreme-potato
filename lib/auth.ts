@@ -9,9 +9,12 @@ import { v4 as uuid } from "uuid";
 import { encode as defaultEncode } from "next-auth/jwt";
 import bcrypt from 'bcrypt';
 
+// Type assertion with proper interface - necessary for Prisma/NextAuth compatibility
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const adapter = PrismaAdapter(prisma as any)
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   adapter: PrismaAdapter(prisma as any),
   providers: [
     GitHub,
@@ -32,26 +35,26 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       authorize: async (credentials) => {
         try {
           const { email, password } = await signInSchema.parseAsync(credentials as SignInSchemaType)
-                   
+                             
           const user = await prisma.user.findUnique({
             where: {
               email,
             }
           })
-           
+                     
           if (!user || !user.password) {
             console.log("User not found error")
             // Return null for authentication failure
             return null
           }
-           
+                     
           const passwordMatch = await bcrypt.compare(password, user.password);
           if (!passwordMatch) {
             console.log("Password mismatch error")
             // Return null for authentication failure
             return null
           }
-                       
+                                 
           // Return user object on success
           return {
             id: user.id,
@@ -75,31 +78,31 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
   },
   // Replace your jwt.encode function in auth.ts with this:
-
+ 
   jwt: {
     encode: async function (params) {
       if (params.token?.credentials) {
         try {
           const sessionToken = uuid();
-
+ 
           if (!params.token.sub) {
             console.error("No user ID found in token");
             // Fall back to default encoding instead of throwing
             return defaultEncode(params);
           }
-
+ 
           const createdSession = await adapter?.createSession?.({
             sessionToken: sessionToken,
             userId: params.token.sub,
             expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
           });
-
+ 
           if (!createdSession) {
             console.error("Failed to create session");
             // Fall back to default encoding instead of throwing
             return defaultEncode(params);
           }
-
+ 
           return sessionToken;
         } catch (error) {
           console.error("Error in custom JWT encode:", error);

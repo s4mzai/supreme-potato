@@ -1,9 +1,8 @@
 "use client"
 import { signUpWithCredentials } from "@/actions/signUpAction"
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
-import {useState,useTransition} from "react"
+import {useTransition} from "react"
 
 const CredentialsSignUp = () => {
   const router = useRouter()

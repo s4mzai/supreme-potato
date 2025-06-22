@@ -2,7 +2,6 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
 import { toast } from "sonner"
 import { signOut } from "next-auth/react"
 

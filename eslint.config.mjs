@@ -10,7 +10,23 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  {
+    ignores: [
+      "lib/generated/**/*",
+      "prisma/generated/**/*",
+      "node_modules/.prisma/**/*",
+      "**/*.prisma.js",
+    ],
+  },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    rules: {
+      // Allow any types in auth configuration files where needed for library compatibility
+      "@typescript-eslint/no-explicit-any": ["error", {
+        "ignoreRestArgs": true
+      }]
+    }
+  }
 ];
 
 export default eslintConfig;
