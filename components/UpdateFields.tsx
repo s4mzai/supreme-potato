@@ -116,7 +116,7 @@ const UpdateFields = ({ name,provider }: { name: string,provider:string }) => {
               required
               className=" active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all duration-100
             disabled:bg-gray-300 outline-none w-full bg-white text-black rounded-lg border-2 border-black p-3 px-6 shadow-[6px_6px_0_#2e2e2e]"
-              placeholder="Jon Doe"
+              placeholder="John Doe"
               value={newName}
               onChange={(e) => setNewName(e.target.value)}
             />

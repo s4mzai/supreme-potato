@@ -35,7 +35,7 @@ const CredentialsSignUp = () => {
           type="text"
           required
           className="outline-none w-full bg-white text-black rounded-lg border-2 border-black p-3 px-6 shadow-[6px_6px_0_#2e2e2e] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all duration-100"
-          placeholder="Jon Doe"
+          placeholder="John Doe"
         />
       </div>
       
@@ -48,7 +48,7 @@ const CredentialsSignUp = () => {
           type="email"
           required
           className="outline-none w-full bg-white text-black rounded-lg border-2 border-black p-3 px-6 shadow-[6px_6px_0_#2e2e2e] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all duration-100"
-          placeholder="jondoe@mail.com"
+          placeholder="john.doe@example.com"
         />
       </div>
 
