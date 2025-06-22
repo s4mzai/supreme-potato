@@ -8,11 +8,12 @@ import { SignInSchemaType, signInSchema } from "@/lib/signInSchema"
 import { v4 as uuid } from "uuid";
 import { encode as defaultEncode } from "next-auth/jwt";
 import bcrypt from 'bcrypt';
+import { PrismaClient } from "@prisma/client"
 
-const adapter = PrismaAdapter(prisma as any)
+const adapter = PrismaAdapter(prisma as  unknown as PrismaClient)
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: PrismaAdapter(prisma as any),
+  adapter: adapter,
   providers: [
     GitHub,
     Google,
