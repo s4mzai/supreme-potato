@@ -4,6 +4,19 @@ A simple authentication app built with **Next.js 14 App Router**, **Auth.js**, *
 
 ---
 
+## 🖼️ Preview
+
+![Supreme Potato Preview](./public/preview.png)
+
+---
+
+## 🔗 Live Demo
+
+👉 [supreme-potato.vercel.app](https://supreme-potato.vercel.app)  
+_Deployed via Vercel_
+
+---
+
 ## 🚀 Features
 
 - Sign up and sign in with email/password
