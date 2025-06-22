@@ -1,6 +1,0 @@
-TODO's
-
-1. add the database url in the env.
-2. define the model (tables)
-3. npx prisma migrate dev
-4.npx prisma generate
