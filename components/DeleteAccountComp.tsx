@@ -1,4 +1,3 @@
-// components/ConfirmDelete.tsx
 "use client"
 
 import { useState } from "react"

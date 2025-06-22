@@ -18,7 +18,6 @@ const CredentialsSignUp = () => {
         toast.success(result.message)
         router.push("/")
       }
-      // If successful with redirect, this won't be reached
     })
   }
 

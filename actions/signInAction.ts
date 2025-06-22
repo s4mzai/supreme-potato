@@ -17,7 +17,6 @@ export async function signInWithCredentials(formData: FormData) {
     })
     
     console.log("Sign in successful!")
-    // If we reach here, sign in was successful
     return { 
       success: true, 
       message: "Welcome! Signed in successfully." 

@@ -142,7 +142,7 @@ const UpdateFields = ({ name,provider }: { name: string,provider:string }) => {
         </form>
 
         {/* --- PASSWORD FORM --- */}
-        {/* IF THE USER IF FROM CREDENTIALS THEN TO SHOW THEM OR IF FROM PROVIDER THEN NO */}
+        {/* IF THE USER IS FROM CREDENTIALS THEN SHOW THEM OR IF FROM PROVIDER THEN NO */}
         {provider==="credentials"?
           <form
             onSubmit={(e) => {

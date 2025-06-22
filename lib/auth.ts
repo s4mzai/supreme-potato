@@ -9,12 +9,9 @@ import { v4 as uuid } from "uuid";
 import { encode as defaultEncode } from "next-auth/jwt";
 import bcrypt from 'bcrypt';
 
-// Type assertion with proper interface - necessary for Prisma/NextAuth compatibility
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const adapter = PrismaAdapter(prisma as any)
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   adapter: PrismaAdapter(prisma as any),
   providers: [
     GitHub,
@@ -24,7 +21,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: {
           type: "email",
           label: "Email",
-          placeholder: "johndoe@mail.com",
+          placeholder: "john.doe@example.com",
         },
         password: {
           type: "password",
@@ -44,18 +41,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                      
           if (!user || !user.password) {
             console.log("User not found error")
-            // Return null for authentication failure
             return null
           }
                      
           const passwordMatch = await bcrypt.compare(password, user.password);
           if (!passwordMatch) {
             console.log("Password mismatch error")
-            // Return null for authentication failure
             return null
           }
                                  
-          // Return user object on success
+
           return {
             id: user.id,
             name: user.name,
@@ -77,7 +72,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return token;
     },
   },
-  // Replace your jwt.encode function in auth.ts with this:
  
   jwt: {
     encode: async function (params) {
@@ -87,7 +81,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
  
           if (!params.token.sub) {
             console.error("No user ID found in token");
-            // Fall back to default encoding instead of throwing
+
             return defaultEncode(params);
           }
  
@@ -99,14 +93,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
  
           if (!createdSession) {
             console.error("Failed to create session");
-            // Fall back to default encoding instead of throwing
             return defaultEncode(params);
           }
  
           return sessionToken;
         } catch (error) {
           console.error("Error in custom JWT encode:", error);
-          // Fall back to default encoding
           return defaultEncode(params);
         }
       }
@@ -114,6 +106,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
   },
   pages: {
-    signIn: '/signin', // Optional: custom sign-in page
+    signIn: '/signin', 
   },
 });
